@@ -1,8 +1,7 @@
-.imageClass{
-    width:200px;
-    height:200px;
-}
-.vertical-align{
-    display: flex;
-    align-items: center;
+/* .cursorPointer{
+    cursor: pointer  
+} */
+
+button.btn {
+    width: 70px;
 }

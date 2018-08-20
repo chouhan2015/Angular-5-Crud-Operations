@@ -1,52 +1,60 @@
-import { Injectable} from '@angular/core';
-import {Employee } from '../models/employee.model'
+import { Injectable } from '@angular/core';
+import { Employee } from '../models/employee.model';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import { catchError } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
 @Injectable()
 export class EmployeeService {
-    private listEmployee : Employee[] = [
-        {
-            id: 1,
-            name: 'Mark',
-            gender: 'Male',
-            contactPreference: 'Email',
-            phoneNumber: 2345978640,
-            email: 'mark@pragimtech.com',
-            dateofbirth: new Date('10/12/2016'),
-            department: 'IT',
-            isActive: true,
-            photopath: 'assets/images/img1.png'
-        },
-        {
-            id: 2,
-            name: 'Mary',
-            gender: 'Female',
-            contactPreference: 'Phone',
-            phoneNumber: 2345978640,
-            dateofbirth: new Date('11/20/1979'),
-            department: 'HR',
-            isActive: true,
-            photopath: 'assets/images/img2.jpg'
+    constructor(private httpClient: HttpClient) { }
 
-        },
-        {
-            id: 3,
-            name: 'John',
-            gender: 'Male',
-            contactPreference: 'Phone',
-            phoneNumber: 5432978640,
-            dateofbirth: new Date('3/25/1976'),
-            department: 'IT',
-            isActive: false,
-            photopath: 'assets/images/img3.png'
+    baseUrl = 'http://localhost:3000/employees';
 
+    getEmployees(): Observable<Employee[]> {
+        return this.httpClient.get<Employee[]>(this.baseUrl)
+            .pipe(catchError(this.handleError));
+    }
+
+    private handleError(errorResponse: HttpErrorResponse) {
+        if (errorResponse.error instanceof ErrorEvent) {
+            console.error('Client Side Error: ', errorResponse.error.message);
+        } else {
+            console.error('Server Side Error: ', errorResponse);
         }
-    ]
-    getEmployee() : Employee[]{
-        return this.listEmployee;
+
+        return new ErrorObservable('There is a problem with the service. We are notified & working on it. Please try again later.');
     }
 
-    save(employee : Employee){
-        this.listEmployee.push(employee);
+    getEmployee(id: number): Observable<Employee> {
+        return this.httpClient.get<Employee>(`${this.baseUrl}/${id}`)
+            .pipe(catchError(this.handleError));
     }
-    
+
+    addEmployee(employee: Employee): Observable<Employee> {
+        return this.httpClient.post<Employee>(this.baseUrl, employee, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        })
+            .pipe(catchError(this.handleError));
+    }
+
+    updateEmployee(employee: Employee): Observable<void> {
+        return this.httpClient.put<void>(`${this.baseUrl}/${employee.id}`, employee, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        })
+            .pipe(catchError(this.handleError));
+    }
+
+    deleteEmployee(id: number): Observable<void> {
+        return this.httpClient.delete<void>(`${this.baseUrl}/${id}`)
+            .pipe(catchError(this.handleError));
+    }
 }
