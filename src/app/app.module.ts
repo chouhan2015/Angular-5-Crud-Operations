@@ -3,10 +3,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { routing } from './app-routing.module'
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { SelectRequiredValidatorDirective } from './shared/select-required-validator.directive';
-
 import { AppComponent } from './app.component';
 import { ListEmployeesComponent } from './employee/list-employee.component';
 import { CreateEmployeeComponent } from './employee/create-employee.component';
@@ -20,25 +19,8 @@ import { EmployeeListResolverService } from './employee/employee-list-resolver.s
 import { PageNotFoundComponent } from './page-not-found.component';
 import { EmployeeDetailsGuardService } from './employee/employee-details-guard.service';
 import { AccordionComponent } from './shared/accordion.component';
+import { FeatureModule } from "./feature/feature.module";
 
-const appRoutes: Routes = [
-  {
-    path: 'list',
-    component: ListEmployeesComponent,
-    resolve: { employeeList: EmployeeListResolverService }
-  },
-  {
-    path: 'edit/:id',
-    component: CreateEmployeeComponent,
-    canDeactivate: [CreateEmployeeCanDeactivateGuardService]
-  },
-  {
-    path: 'employees/:id', component: EmployeeDetailsComponent,
-    canActivate: [EmployeeDetailsGuardService]
-  },
-  { path: '', redirectTo: '/list', pathMatch: 'full' },
-  { path: 'notfound', component: PageNotFoundComponent },
-];
 
 @NgModule({
   declarations: [
@@ -56,12 +38,12 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    FeatureModule,
     HttpClientModule,
     BsDatepickerModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    routing
   ],
-  providers: [EmployeeService, CreateEmployeeCanDeactivateGuardService,
-    EmployeeListResolverService, EmployeeDetailsGuardService],
+  providers :[EmployeeService, CreateEmployeeCanDeactivateGuardService,EmployeeListResolverService, EmployeeDetailsGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

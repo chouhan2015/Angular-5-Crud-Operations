@@ -77,7 +77,7 @@ export class CreateEmployeeComponent implements OnInit {
         (data: Employee) => {
           console.log(data);
           this.createEmployeeForm.reset();
-          this._router.navigate(['list']);
+          this._router.navigate(['employee']);
         },
         (error: any) => console.log(error)
       );
@@ -85,7 +85,7 @@ export class CreateEmployeeComponent implements OnInit {
       this._employeeService.updateEmployee(this.employee).subscribe(
         () => {
           this.createEmployeeForm.reset();
-          this._router.navigate(['list']);
+          this._router.navigate(['employee']);
         },
         (error: any) => console.log(error)
       );
