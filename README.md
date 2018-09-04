@@ -27,5 +27,11 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 
+## To Run the DB run the below comman which provide Fake API 
+    json-server --watch db.json
 
-json-server --watch db.json
+## Due to Lazy Loading some angular library not supported. so run the code with AOT compilation Mode 
+      ng serve -aot 
+      
+## To run the Unit Test Cases 
+      ng test 
