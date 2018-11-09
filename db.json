@@ -1,44 +1,52 @@
 {
   "employees": [
-   {
-            "id": 1,
-            "name": "Lional Messi",
-            "gender": "Male",
-            "contactPreference": "Email",
-            "phoneNumber": 2345978640,
-            "email": "messi@pragimtech.com",
-            "dateofbirth": "10/12/2016",
-            "department": "1",
-            "isActive": true,
-            "photopath": "assets/images/messi.jpg"
-        },
-        {
-            "id": 2,
-            "name": "Cristine",
-            "gender": "Female",
-            "contactPreference": "Phone",
-            "phoneNumber": 2345978640,
-            "dateofbirth": "11/20/1979",
-            "email": "cris@pragimtech.com",
-            "department": "2",
-            "isActive": true,
-            "photopath": "assets/images/cristine.jpg"
-
-        },
-        {
-            "id": 3,
-            "name": "Tom Cruise",
-            "gender": "Male",
-            "contactPreference": "Phone",
-            "phoneNumber": 5432978640,
-            "email": "tom@pragimtech.com",
-            "dateofbirth": "3/25/1976",
-            "department": "3",
-            "isActive": false,
-            "photopath": "assets/images/tom.jpg"
-
-        }
-	
+    {
+      "id": 1,
+      "name": "Lional Messi",
+      "gender": "Male",
+      "contactPreference": "Email",
+      "phoneNumber": 2345978640,
+      "email": "messi@pragimtech.com",
+      "dateofbirth": "10/12/2016",
+      "department": "1",
+      "isActive": true,
+      "photopath": "assets/images/messi.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Cristine",
+      "gender": "Female",
+      "contactPreference": "Phone",
+      "phoneNumber": 2345978640,
+      "dateofbirth": "11/20/1979",
+      "email": "cris@pragimtech.com",
+      "department": "2",
+      "isActive": true,
+      "photopath": "assets/images/cristine.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Tom Cruise",
+      "gender": "Male",
+      "contactPreference": "Phone",
+      "phoneNumber": 5432978640,
+      "email": "tom@pragimtech.com",
+      "dateofbirth": "3/25/1976",
+      "department": "3",
+      "isActive": false,
+      "photopath": "assets/images/tom.jpg"
+    },
+    {
+      "id": 4,
+      "name": "test",
+      "gender": "Male",
+      "contactPreference": "Email",
+      "phoneNumber": "7896541236",
+      "email": "test@gmail.com",
+      "dateOfBirth": "2015-01-11T18:30:00.000Z",
+      "department": "3",
+      "isActive": true,
+      "photoPath": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNI0B6zk_PwgaEVosOiU2vvMlUTVIJ0FW7VqeKufm31VzC4HbzzQ"
+    }
   ]
- 
 }

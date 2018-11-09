@@ -8,17 +8,26 @@ import 'rxjs/add/operator/catch';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { of } from "rxjs";
 
 @Injectable()
 export class EmployeeService {
-    constructor(private httpClient: HttpClient) { }
+  private  baseUrl = 'http://localhost:3000/employees';
 
-    baseUrl = 'http://localhost:3000/employees';
+constructor(private httpClient: HttpClient) { }
 
-    getEmployees(): Observable<Employee[]> {
-        return this.httpClient.get<Employee[]>(this.baseUrl)
-            .pipe(catchError(this.handleError));
-    }
+        public employees: Observable<Employee[]> = of([]);
+    
+        getEmployees(): Observable<Employee[]>  {
+            debugger;
+            this.employees = this.httpClient.get<Employee[]>(this.baseUrl).pipe(catchError(this.handleError));
+            return this.employees;
+        }
+    
+    // getEmployees(): Observable<Employee[]> {
+    //     return this.httpClient.get<Employee[]>(this.baseUrl)
+    //         .pipe(catchError(this.handleError));
+    // }
 
     private handleError(errorResponse: HttpErrorResponse) {
         if (errorResponse.error instanceof ErrorEvent) {
@@ -28,7 +37,7 @@ export class EmployeeService {
         }
 
         return new ErrorObservable('There is a problem with the service. We are notified & working on it. Please try again later.');
-    }
+    }   
 
     getEmployee(id: number): Observable<Employee> {
         return this.httpClient.get<Employee>(`${this.baseUrl}/${id}`)

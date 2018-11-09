@@ -20,6 +20,9 @@ import { PageNotFoundComponent } from './page-not-found.component';
 import { EmployeeDetailsGuardService } from './employee/employee-details-guard.service';
 import { AccordionComponent } from './shared/accordion.component';
 import { FeatureModule } from "./feature/feature.module";
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -37,6 +40,10 @@ import { FeatureModule } from "./feature/feature.module";
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    ToastContainerModule,
     FormsModule,
     FeatureModule,
     HttpClientModule,
